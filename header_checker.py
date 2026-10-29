@@ -1,5 +1,7 @@
 import requests
 url = input("Type the URL: (example: https://www.google.com) ")
+if not url.startswith("http://") and not url.startswith("https://"):
+    url = "http://" + url
 try:
     answer = requests.get(url, timeout=5)
     headers = answer.headers
@@ -17,8 +19,20 @@ security_headers = [
     "Permissions-Policy"
 ]
 print("\nAnalysis result:\n")
+
+present = 0
+missing = 0
+
 for header in security_headers:
     if header in headers:
         print(f"[+] {header}: Present")
+        valor = headers[header]
+        if len(valor) > 80: 
+            valor = valor[:80] + "..."
+        print(f"    Value: {valor}")
+        present += 1
     else:
         print(f"[-] {header}: Missing")
+        missing += 1
+
+print(f"\nSummary: {present} present, {missing} missing.")
