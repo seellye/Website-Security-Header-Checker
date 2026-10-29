@@ -24,9 +24,9 @@ A simple Python tool that checks whether a website has important security header
 1. Python 3.x
 2. requests library
 Install the required library with:
-Bashpip install requests
+pip install requests
 
-## disclaimer
+## Disclaimer
 This project was created for educational purposes only.
 Always ensure you have permission before scanning any website that you do not own.
 
